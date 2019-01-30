@@ -108,11 +108,11 @@ spec:
       name: sonobuoy-bin
       defaultMode: 0555
   - secret:
-      secretName: sonobuoy-etc
+      secretName: sonobuoy-{{ .Release.Name. }}-etc
       defaultMode: 0444
     name: sonobuoy-config-volume
   - configMap:
-      name: sonobuoy-plugins
+      name: sonobuoy-{{ .Release.Name. }}-plugins
       defaultMode: 0444
     name: sonobuoy-plugins-volume
   - emptyDir: {}
