@@ -20,7 +20,7 @@ limitations under the License.
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sonobuoy-plugins
+  name: sonobuoy-{{ .Release.Name }}-plugins
 data:
   {{ range .Values.conf.plugins }}
 {{- include "helm-toolkit.snippets.values_template_renderer" ( dict "envAll" $envAll "template" .data "key" .name ) | indent 4 }}
