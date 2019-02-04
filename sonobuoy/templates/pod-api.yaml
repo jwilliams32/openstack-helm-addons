@@ -77,7 +77,7 @@ spec:
       name: sonobuoy-plugins-volume
     - mountPath: {{ .Values.conf.sonobuoy.ResultsDir }}
       name: sonobuoy-output
-    - name: sonobuoy-bin
+    - name: sonobuoy-{{ .Release.Name }}-bin
       mountPath: /run_master.sh
       subPath: run_master.sh
       readOnly: true
@@ -93,7 +93,7 @@ spec:
     command:
     - /publish_results.sh
     volumeMounts:
-    - name: sonobuoy-bin
+    - name: sonobuoy-{{ .Release.Name }}-bin
       mountPath: /publish_results.sh
       subPath: publish_results.sh
       readOnly: true
@@ -103,9 +103,9 @@ spec:
   restartPolicy: Never
   serviceAccountName: {{ $serviceAccountName }}
   volumes:
-  - name: sonobuoy-bin
+  - name: sonobuoy-{{ .Release.Name }}-bin
     configMap:
-      name: sonobuoy-bin
+      name: sonobuoy-{{ .Release.Name }}-bin
       defaultMode: 0555
   - secret:
       secretName: sonobuoy-{{ .Release.Name }}-etc

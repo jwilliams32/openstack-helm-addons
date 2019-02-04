@@ -20,7 +20,7 @@ limitations under the License.
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sonobuoy-bin
+  name: sonobuoy-{{ .Release.Name }}-bin
 data:
   ks-user.sh: |
 {{- include "helm-toolkit.scripts.keystone_user" $envAll | indent 4 }}
