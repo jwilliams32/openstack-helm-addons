@@ -15,6 +15,6 @@ limitations under the License.
 */}}
 
 {{- if .Values.manifests.job_ks_user }}
-{{- $ksUserJob := dict "envAll" . "serviceName" "sonobuoy" "configMapBin" (printf "%s-%s" .Release.Name "bin" ) -}}
+{{- $ksUserJob := dict "envAll" . "serviceName" "sonobuoy" "configMapBin" (printf "sonobuoy-%s-bin" .Release.Name ) -}}
 {{ $ksUserJob | include "helm-toolkit.manifests.job_ks_user" }}
 {{- end }}
